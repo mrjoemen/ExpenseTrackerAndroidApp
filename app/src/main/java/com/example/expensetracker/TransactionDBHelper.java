@@ -7,11 +7,11 @@ import android.util.Log;
 
 public class TransactionDBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "transactions.db";
+    private static final String DATABASE_NAME = "mytransactions.db";
     private static final int DATABASE_VERSION = 1;
 
     //Database creation sql statement
-    private static final String CREATE_TABLE_TRANSACTIONS =
+    private static final String CREATE_TABLE_TRANSACTION =
             "create table transactions (_id integer primary key autoincrement, " +
                     "transactionAmount float, transactionDate text, description text);";
 
@@ -21,7 +21,7 @@ public class TransactionDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_TRANSACTIONS);
+        db.execSQL(CREATE_TABLE_TRANSACTION);
     }
 
     @Override
