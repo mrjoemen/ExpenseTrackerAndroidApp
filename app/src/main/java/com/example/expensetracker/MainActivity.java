@@ -12,7 +12,8 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     private Transaction currentTransaction;
-    /* TODO add currentTransaction.setDate(selectedTime) in datePicker dialog.
+    /* TODO:
+        add currentTransaction.setDate(selectedTime) in datePicker dialog.
      */
 
     @Override
@@ -22,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    private void initTextChangedEvents(){
+/*    private void initTextChangedEvents(){
 
         //collect transaction description info from the UI
-        final EditText etTransactionDescr = findViewById(R.id.editDescription/* change for the actual id*/);
+        final EditText etTransactionDescr = findViewById(R.id.editDescription*//* change for the actual id*//*);
         etTransactionDescr.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //collect amount info from UI
-        final EditText etTransactionAmount = findViewById(R.id.editAmount/* change for the actual id*/);
+        final EditText etTransactionAmount = findViewById(R.id.editAmount*//* change for the actual id*//*);
         etTransactionAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -62,5 +63,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 }
