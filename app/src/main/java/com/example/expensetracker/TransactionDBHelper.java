@@ -13,7 +13,7 @@ public class TransactionDBHelper extends SQLiteOpenHelper {
     //Database creation sql statement
     private static final String CREATE_TABLE_TRANSACTION =
             "create table transactions (_id integer primary key autoincrement, " +
-                    "transactionAmount float, transactionDate text, description text);";
+                    "transactionAmount float, transactionType text, transactionDate text, description text);";
 
     public TransactionDBHelper (Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

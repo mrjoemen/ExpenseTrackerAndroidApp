@@ -5,12 +5,20 @@ import java.util.Calendar;
 public class Transaction {
     private float amount;
     private Calendar date;
-    private String description;
+    private String description, type;
     private int transactionID;
 
     public Transaction(){
         transactionID = -1;
         date = Calendar.getInstance();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public float getAmount() {

@@ -2,6 +2,7 @@ package com.example.expensetracker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -27,6 +28,7 @@ public class TransactionDataSource {
             ContentValues initialValues = new ContentValues();
 
             initialValues.put("description", t.getDescription());
+            initialValues.put("transactionType", t.getType());
             initialValues.put("transactionAmount", t.getAmount());
             initialValues.put("transactionDate", String.valueOf(t.getDate().getTimeInMillis()));
 
@@ -47,6 +49,7 @@ public class TransactionDataSource {
             ContentValues updateValues = new ContentValues();
 
             updateValues.put("description", t.getDescription());
+            updateValues.put("transactionType", t.getType());
             updateValues.put("transactionAmount", t.getAmount());
             updateValues.put("transactionDate", String.valueOf(t.getDate().getTimeInMillis()));
 
@@ -57,5 +60,22 @@ public class TransactionDataSource {
         }
 
         return didSucceed;
+    }
+
+    public int getLastContactID() {
+        int lastId;
+
+        try {
+            String query = "Select MAX(_id) from transactions";
+            Cursor cursor = database.rawQuery(query, null);
+
+            cursor.moveToFirst();
+            lastId = cursor.getInt(0);
+            cursor.close();
+        }
+        catch (Exception e) {
+            lastId = -1;
+        }
+        return lastId;
     }
 }
