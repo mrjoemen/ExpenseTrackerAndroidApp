@@ -6,4 +6,17 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="enter_a_transaction">Enter A Transaction</string>
+    <string name="transaction">Transaction</string>
+    <string name="_0">$0</string>
+    <string name="subscription_income_food_or_travel">Subscription, Income, Food or Travel</string>
+    <string name="amount">Amount</string>
+    <string name="type">Type</string>
+    <string name="enter_type_here">Enter Type Here</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="describe_your_transaction">Describe your transaction</string>
+    <string name="change">Change</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="save">save</string>
 </resources>
