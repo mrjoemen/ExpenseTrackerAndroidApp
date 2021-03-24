@@ -5,6 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.security.cert.TrustAnchor;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TransactionDataSource {
     private SQLiteDatabase database;
@@ -78,4 +83,57 @@ public class TransactionDataSource {
         }
         return lastId;
     }
+
+    public ArrayList<Transaction> getTransactions(/*String sortField, String sortOrder*/){
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM transactions;"; /*ORDER BY"/* + sortField + " " + sortOrder + ";";*/
+            Cursor cursor = database.rawQuery(query, null);
+
+            Transaction newTransaction;
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                newTransaction = new Transaction();
+                newTransaction.setAmount(cursor.getFloat(0));
+                newTransaction.setType(cursor.getString(1));
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(Long.valueOf(cursor.getString(2)));
+                newTransaction.setDate(calendar);
+                newTransaction.setDescription(cursor.getString(3));
+                transactions.add(newTransaction);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        catch (Exception e) {
+            transactions = new ArrayList<Transaction>();
+        }
+        return transactions;
+
+
+    }
+
+    public float getBalance(){
+        database = dbHelper.getWritableDatabase();
+        float balance = 0;
+        try {
+            String query = "SELECT transactionAmount FROM transactions;"; /*ORDER BY"/* + sortField + " " + sortOrder + ";";*/
+            Cursor cursor = database.rawQuery(query, null);
+
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                balance += (cursor.getFloat(0));
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        catch (Exception e) {
+            Log.w(TransactionDataSource.class.getName(), "error accessing balance");
+        }
+        return balance;
+
+    }
+
 }
