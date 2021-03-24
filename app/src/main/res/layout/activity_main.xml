@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/helloText" />
 
     <Button
-        android:id="@+id/inflowButton"
+        android:id="@+id/inButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
         android:layout_marginTop="12dp"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dollarText" />
 
     <Button
-        android:id="@+id/outflowButton"
+        android:id="@+id/outButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
         android:layout_marginStart="4dp"
@@ -78,7 +78,7 @@
         app:srcCompat="@drawable/settings_icon" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/rvTransactions"
         android:layout_width="394dp"
         android:layout_height="226dp"
         android:layout_marginStart="8dp"
