@@ -92,6 +92,8 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
 
     }
 
+
+    //activating save button and process the push of data to DB
     private void initDebitSaveButton() {
         Button saveButton = findViewById(R.id.debitSaveButton);
         saveButton.setOnClickListener((View view) -> {

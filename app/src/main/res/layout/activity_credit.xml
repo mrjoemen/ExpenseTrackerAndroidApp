@@ -139,9 +139,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Salary"
+                android:hint="Restaurant"
                 android:inputType="textPersonName"
                 android:textAlignment="textEnd" />
+
         </TableRow>
 
         <TableRow
@@ -167,6 +168,19 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/creditDateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="change" />
+
+            <EditText
+                android:id="@+id/editCreditDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date" />
 
             <TextView
                 android:id="@+id/textView2"

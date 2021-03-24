@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity{
         //ds instance for accessing instance method later
         TransactionDataSource dataSource = new TransactionDataSource(MainActivity.this);
         TextView balance = findViewById(R.id.dollarText);
-        balance.setText("$" + (int) dataSource.getBalance());
+        balance.setText("$" + dataSource.getBalance());
     }
 
 

@@ -38,8 +38,6 @@
         android:id="@+id/inButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="4dp"
         android:backgroundTint="#C6FDC1"
         android:fontFamily="@font/roboto_light"
         android:gravity="right|center_vertical"
@@ -47,15 +45,13 @@
         android:textColor="#000000"
         android:textSize="36sp"
         app:cornerRadius="29dip"
-        app:layout_constraintEnd_toStartOf="@+id/dollarText"
-        app:layout_constraintTop_toBottomOf="@+id/dollarText" />
+        app:layout_constraintBottom_toTopOf="@+id/rvTransactions"
+        app:layout_constraintEnd_toStartOf="@+id/helloText" />
 
     <Button
         android:id="@+id/outButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
         android:backgroundTint="#FDCFC1"
         android:fontFamily="@font/roboto_light"
         android:gravity="left|center_vertical"
@@ -63,8 +59,8 @@
         android:textColor="#000000"
         android:textSize="36sp"
         app:cornerRadius="29dip"
-        app:layout_constraintStart_toEndOf="@+id/dollarText"
-        app:layout_constraintTop_toBottomOf="@+id/dollarText" />
+        app:layout_constraintBottom_toTopOf="@+id/rvTransactions"
+        app:layout_constraintStart_toEndOf="@+id/helloText" />
 
     <ImageButton
         android:id="@+id/settingsButton"
