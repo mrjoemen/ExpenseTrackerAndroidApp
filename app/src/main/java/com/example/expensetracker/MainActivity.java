@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         initInButton();
         initOutButton();
+        initMenuItems();
         initCurrentBalance();
         //initChangeTransactionDateButton();
 
@@ -101,6 +103,16 @@ public class MainActivity extends AppCompatActivity{
         TransactionDataSource dataSource = new TransactionDataSource(MainActivity.this);
         TextView balance = findViewById(R.id.dollarText);
         balance.setText("$" + dataSource.getBalance());
+    }
+
+    private void initMenuItems(){
+
+        //investment menu icon links to Investment layout
+        ImageButton investButton = findViewById(R.id.investmentButton);
+        investButton.setOnClickListener(view ->{
+            Intent intent = new Intent(MainActivity.this, InvestmentOptions.class);
+            startActivity(intent);
+        });
     }
 
 

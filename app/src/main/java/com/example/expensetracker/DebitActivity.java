@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -27,6 +28,7 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
         setContentView(R.layout.activity_debit);
         initTextChangedEvents();
         initDebitSaveButton();
+        initMenuItems();
         initChangeDebitDateButton();
         currentTransaction = new Transaction();
     }
@@ -148,5 +150,14 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
 
         //need current Transaction
         currentTransaction.setDate(selectedTime);
+    }
+    private void initMenuItems(){
+
+        //investment menu icon links to Investment layout
+        ImageButton investButton = findViewById(R.id.homeButton);
+        investButton.setOnClickListener(view ->{
+            Intent intent = new Intent(DebitActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 }

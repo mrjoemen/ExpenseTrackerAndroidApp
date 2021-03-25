@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
         initTextChangedEvents();
         initCreditSaveButton();
         initChangeCreditDateButton();
+        initMenuItems();
         currentTransaction = new Transaction();
     }
 
@@ -147,5 +149,15 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
 
         //need current Transaction
         currentTransaction.setDate(selectedTime);
+    }
+
+    private void initMenuItems(){
+
+        //investment menu icon links to Investment layout
+        ImageButton investButton = findViewById(R.id.homeButton);
+        investButton.setOnClickListener(view ->{
+            Intent intent = new Intent(CreditActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 }
