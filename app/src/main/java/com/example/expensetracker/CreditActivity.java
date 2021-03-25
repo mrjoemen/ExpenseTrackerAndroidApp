@@ -26,6 +26,7 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
         setContentView(R.layout.activity_credit);
         initTextChangedEvents();
         initCreditSaveButton();
+        initChangeCreditDateButton();
         currentTransaction = new Transaction();
     }
 
@@ -129,7 +130,7 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
 
     //click listener and get datapicker dialog
     private void initChangeCreditDateButton(){
-        Button changeDate = findViewById(R.id.debitDateButton);
+        Button changeDate = findViewById(R.id.creditDateButton);
         changeDate.setOnClickListener(view -> {
             FragmentManager fm = getSupportFragmentManager();
             DatePickerDialog datePickerDialog = new DatePickerDialog(); // We create the dialog here
@@ -140,7 +141,7 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
 
     @Override
     public void didFinishDatePickerDialog(Calendar selectedTime) {
-        TextView transDate = findViewById(R.id.editDebitDate);
+        TextView transDate = findViewById(R.id.editCreditDate);
         transDate.setText(DateFormat.format("MM/dd/yyyy", selectedTime));
         Log.i("Hello there", "hello");
 
