@@ -25,6 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,14 +75,5 @@
             app:srcCompat="@drawable/line_graph" />
 
     </LinearLayout>
-
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="352dp"
-        android:layout_height="229dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TikPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

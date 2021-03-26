@@ -15,7 +15,8 @@ import java.net.URLConnection;
 
 public class InvestmentOptions extends AppCompatActivity {
     TextView SPY_TextView;
-    final String SPY_url = UrlBuilder("SPY");
+    final String SPY_url = NYSurlBuilder("SPY");
+    final String BTC_url = criptoURLBuilder("bitcoin");
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -23,6 +24,7 @@ public class InvestmentOptions extends AppCompatActivity {
         setContentView(R.layout.activity_investments);
         initMenuItems();
         SPY_TextView = findViewById(R.id.TikPrice);
+        SPY_TextView.setText("Loading...");
 
         //calling for inner class passing URL for the stock
         new MyTask().execute(SPY_url);
@@ -85,7 +87,11 @@ public class InvestmentOptions extends AppCompatActivity {
         }
     }
 
-    protected String UrlBuilder(String stockSym){
+    protected String NYSurlBuilder(String stockSym){
         return "https://www.marketwatch.com/investing/fund/" + stockSym + "/download-data?siteid=mktw&date=&x=0&y=0";
+    }
+    protected String criptoURLBuilder(String currencyName){
+
+        return "https://www.coindesk.com/price/" + currencyName;
     }
 }
