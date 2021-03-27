@@ -31,7 +31,7 @@ public class InvestmentOptions extends AppCompatActivity {
         GoogleTextView = findViewById(R.id.googleTextView);
         GoogleTextView.setText("Loading...");
 
-        //calling for inner class passing URLs for the stock
+        //calling for inner class passing URL for the stock
         new MyTask().execute(SPY_url, GOOGLE_url);
 
 
@@ -54,32 +54,25 @@ public class InvestmentOptions extends AppCompatActivity {
         //then using it to assign values to TextViews
         ArrayList<String> quotes = new ArrayList<>();
 
-
+        //call url
         @Override
         protected Void doInBackground(String... urls) {
 
-            for (String s : urls) {//just looping over passed strings
+            for (String s : urls) {
 
                 try {
-                    // assigning passed url for HTTP call
-                    URL url = new URL(s);
-                    //initiating connection
+
+                    URL url = new URL(s);// assigning passed url for HTTP call
                     URLConnection urlConnection = url.openConnection();
-                    //collect HTML to inputStream
                     InputStreamReader inStream = new InputStreamReader(urlConnection.getInputStream());
-                    //convert to a readable BufferedReader
                     BufferedReader buff = new BufferedReader(inStream);
 
-                    //read the first line
                     String line = buff.readLine();
 
-                    //looping over results until found desired value or end
+                    //looping over results
                     while (line != null) {
-
-                        //once found the specific element
-                        // the price will follow it, pull the price and go to next URL
-
-                        if (line.contains("price\":\"")) {//<-- this is the specific element
+                        //once found the segment, pull the price
+                        if (line.contains("price\":\"")) {
                             int target = line.indexOf("price\":\"");
                             int decimal = line.indexOf(".", target);
                             int start = decimal;
@@ -104,7 +97,6 @@ public class InvestmentOptions extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void price) {
             //set the above global TextViews to the pulled quotes, found in doInBackground
-            //if more assignment required, pass extra URLs and assign text here
             SPY_TextView.setText("SPY price today is $" + quotes.get(0));
             GoogleTextView.setText("GOOG price today is $" + quotes.get(1));
 
