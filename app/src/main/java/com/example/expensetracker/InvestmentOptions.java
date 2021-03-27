@@ -18,6 +18,9 @@ import java.util.ArrayList;
 public class InvestmentOptions extends AppCompatActivity {
     TextView SPY_TextView;
     TextView GoogleTextView;
+    TextView totalSPYStocks;
+    TextView totalGoogleStocks;
+
     final String SPY_url = NYSurlBuilder("spy");
     final String GOOGLE_url = NYSurlBuilder("goog");
 
@@ -26,10 +29,14 @@ public class InvestmentOptions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_investments);
         initMenuItems();
+        initCurrentBalance();
         SPY_TextView = findViewById(R.id.SPYPrice);
         SPY_TextView.setText("Loading...");
         GoogleTextView = findViewById(R.id.googleTextView);
         GoogleTextView.setText("Loading...");
+
+        totalSPYStocks = findViewById(R.id.totalSPYStocks);
+        totalGoogleStocks = findViewById(R.id.totalGoogleStocks);
 
         //calling for inner class passing URL for the stock
         new MyTask().execute(SPY_url, GOOGLE_url);
@@ -46,6 +53,14 @@ public class InvestmentOptions extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    private void initCurrentBalance(){
+        //ds instance for accessing instance method later
+        TransactionDataSource dataSource = new TransactionDataSource(InvestmentOptions.this);
+        TextView balance = findViewById(R.id.dollarText);
+        balance.setText("$" + dataSource.getBalance());
+    }
+
 
     //class to call url Asyncronously where we pass the url and the TextView item to be set with the returned price
     private class MyTask extends AsyncTask<String, Void, Void> {
@@ -99,6 +114,22 @@ public class InvestmentOptions extends AppCompatActivity {
             //set the above global TextViews to the pulled quotes, found in doInBackground
             SPY_TextView.setText("SPY price today is $" + quotes.get(0));
             GoogleTextView.setText("GOOG price today is $" + quotes.get(1));
+
+            double stockPriceSpy = Double.parseDouble(quotes.get(0));
+            double stockPriceGoogle = Double.parseDouble(quotes.get(1));
+
+            TransactionDataSource dataSource = new TransactionDataSource(InvestmentOptions.this);
+            Double balance = Double.valueOf(dataSource.getBalance());
+
+            double totalStockSpy = balance / stockPriceSpy;
+
+
+            double totalStockGoogle = balance / stockPriceGoogle;
+
+            totalSPYStocks.setText("Number of shares you could purchase:" + totalStockSpy);
+            totalGoogleStocks.setText("Number of shares you could purchase:" + totalStockGoogle);
+
+
 
         }
     }
