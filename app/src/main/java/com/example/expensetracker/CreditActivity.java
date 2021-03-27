@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -30,8 +31,40 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
         initChangeCreditDateButton();
         initMenuItems();
         currentTransaction = new Transaction();
+        // for editing debit
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) { //this is when you click on someone's contact via List
+            initTransaction(extras.getInt("transactionId"));
+
+        }
+        else {
+            currentTransaction = new Transaction(); // this will be for the start menu
+
+        }
     }
 
+    private void initTransaction(int id) {
+        TransactionDataSource ds = new TransactionDataSource(CreditActivity.this);
+
+        try {
+            ds.open();
+            currentTransaction = ds.getSpecifiedTransaction(id);
+            ds.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Loading transaction failed", Toast.LENGTH_LONG).show();
+        }
+
+        EditText editCreditAmount = findViewById(R.id.editCreditAmount);
+        EditText editCreditType = findViewById(R.id.editCreditType);
+        EditText editCreditDescription = findViewById(R.id.editCreditDescription);
+        EditText editCreditDate = findViewById(R.id.editCreditDate);
+
+        editCreditAmount.setText(Float.toString(currentTransaction.getAmount() / -1));
+        editCreditType.setText(currentTransaction.getType());
+        editCreditDescription.setText(DateFormat.format("MM/dd/yyyy",currentTransaction.getDate().getTimeInMillis()).toString());
+        editCreditDate.setText(currentTransaction.getDescription());
+    }
 
     //method for reading inputs from the screen
     private void initTextChangedEvents(){
@@ -69,7 +102,7 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
 
             @Override
             public void afterTextChanged(Editable s) {
-                currentTransaction.setAmount(-1 * Integer.parseInt(etCreditAmount.getText().toString()));
+                currentTransaction.setAmount(-1 * Float.parseFloat(etCreditAmount.getText().toString()));
             }
         });
 
@@ -107,7 +140,7 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
                     wasSuccessful = dataSource.insertTransaction(currentTransaction); // if the contact does not exist, then create a new one
                 }
                 if (wasSuccessful) {
-                    int newID = dataSource.getLastContactID();
+                    int newID = dataSource.getLastTransactionId();
                     currentTransaction.setTransactionID(newID);
                 } else {
                     wasSuccessful = dataSource.updateTransaction(currentTransaction); // if it does exist, then just update it

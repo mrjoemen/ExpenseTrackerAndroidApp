@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,40 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
         initMenuItems();
         initChangeDebitDateButton();
         currentTransaction = new Transaction();
+
+        // for editing debit
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) { //this is when you click on someone's contact via List
+            initTransaction(extras.getInt("transactionId"));
+
+        }
+        else {
+            currentTransaction = new Transaction(); // this will be for the start menu
+
+        }
+    }
+
+    private void initTransaction(int id) {
+        TransactionDataSource ds = new TransactionDataSource(DebitActivity.this);
+
+        try {
+            ds.open();
+            currentTransaction = ds.getSpecifiedTransaction(id);
+            ds.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Loading transaction failed", Toast.LENGTH_LONG).show();
+        }
+
+        EditText editDebitAmount = findViewById(R.id.editDebitAmount);
+        EditText editDebitType = findViewById(R.id.editDebitType);
+        EditText editDebitDescription = findViewById(R.id.editDebitDescription);
+        EditText editDebitDate = findViewById(R.id.editDebitDate);
+
+        editDebitAmount.setText(Float.toString(currentTransaction.getAmount()));
+        editDebitType.setText(currentTransaction.getType());
+        editDebitDate.setText(DateFormat.format("MM/dd/yyyy",currentTransaction.getDate().getTimeInMillis()).toString());
+        editDebitDescription.setText(currentTransaction.getDescription());
     }
 
 
@@ -70,7 +105,7 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
 
             @Override
             public void afterTextChanged(Editable s) {
-                currentTransaction.setAmount(Integer.parseInt(etDebitAmount.getText().toString()));
+                currentTransaction.setAmount(Float.parseFloat(etDebitAmount.getText().toString()));
             }
         });
 
@@ -108,7 +143,7 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
                     wasSuccessful = dataSource.insertTransaction(currentTransaction); // if the contact does not exist, then create a new one
                 }
                 if (wasSuccessful) {
-                    int newID = dataSource.getLastContactID();
+                    int newID = dataSource.getLastTransactionId();
                     currentTransaction.setTransactionID(newID);
                 } else {
                     wasSuccessful = dataSource.updateTransaction(currentTransaction); // if it does exist, then just update it

@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import java.security.cert.TrustAnchor;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -67,7 +69,7 @@ public class TransactionDataSource {
         return didSucceed;
     }
 
-    public int getLastContactID() {
+    public int getLastTransactionId() {
         int lastId;
 
         try {
@@ -87,21 +89,22 @@ public class TransactionDataSource {
     public ArrayList<Transaction> getTransactions(/*String sortField, String sortOrder*/){
 
         ArrayList<Transaction> transactions = new ArrayList<>();
+        Transaction newTransaction;
 
         try {
             String query = "SELECT * FROM transactions;"; /*ORDER BY"/* + sortField + " " + sortOrder + ";";*/
             Cursor cursor = database.rawQuery(query, null);
 
-            Transaction newTransaction;
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
                 newTransaction = new Transaction();
-                newTransaction.setAmount(cursor.getFloat(0));
-                newTransaction.setType(cursor.getString(1));
+                newTransaction.setTransactionID(cursor.getInt(0));
+                newTransaction.setAmount(cursor.getFloat(1));
+                newTransaction.setType(cursor.getString(2));
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(Long.valueOf(cursor.getString(2)));
+                calendar.setTimeInMillis(Long.valueOf(cursor.getString(3)));
                 newTransaction.setDate(calendar);
-                newTransaction.setDescription(cursor.getString(3));
+                newTransaction.setDescription(cursor.getString(4));
                 transactions.add(newTransaction);
                 cursor.moveToNext();
             }
@@ -111,8 +114,6 @@ public class TransactionDataSource {
             transactions = new ArrayList<Transaction>();
         }
         return transactions;
-
-
     }
 
     public float getBalance(){
@@ -134,6 +135,36 @@ public class TransactionDataSource {
         }
         return balance;
 
+    }
+
+    public boolean deleteTransaction(int transactionId) {
+        boolean didDelete = false;
+        try {
+            didDelete = database.delete("transactions","_id=" + transactionId, null) > 0;
+        }
+        catch (Exception e){
+            //pass
+        }
+        return didDelete;
+    }
+
+    public Transaction getSpecifiedTransaction(int transactionId) {
+        Transaction transaction = new Transaction();
+        String query = "SELECT * FROM transactions WHERE _id =" + transactionId;
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            transaction.setTransactionID(cursor.getInt(0));
+            transaction.setAmount(cursor.getFloat(1));
+            transaction.setType(cursor.getString(2));
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(Long.valueOf(cursor.getString(3)));
+            transaction.setDate(calendar);
+            transaction.setDescription(cursor.getString(4));
+
+            cursor.close();
+        }
+        return transaction;
     }
 
 }
