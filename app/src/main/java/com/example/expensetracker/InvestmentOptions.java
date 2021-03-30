@@ -115,19 +115,17 @@ public class InvestmentOptions extends AppCompatActivity {
             SPY_TextView.setText("SPY price today is $" + quotes.get(0));
             GoogleTextView.setText("GOOG price today is $" + quotes.get(1));
 
-            double stockPriceSpy = Double.parseDouble(quotes.get(0));
-            double stockPriceGoogle = Double.parseDouble(quotes.get(1));
 
             TransactionDataSource dataSource = new TransactionDataSource(InvestmentOptions.this);
             Double balance = Double.valueOf(dataSource.getBalance());
 
-            double totalStockSpy = balance / stockPriceSpy;
+            double totalStockSpy = balance / Double.parseDouble(quotes.get(0).replace(",", ""));
 
 
-            double totalStockGoogle = balance / stockPriceGoogle;
+            double totalStockGoogle = balance / Double.parseDouble(quotes.get(1).replace(",", ""));
 
-            totalSPYStocks.setText("Number of shares you could purchase:" + totalStockSpy);
-            totalGoogleStocks.setText("Number of shares you could purchase:" + totalStockGoogle);
+            totalSPYStocks.setText(String.format("Number of shares you could purchase: %.3f" , totalStockSpy));
+            totalGoogleStocks.setText(String.format("Number of shares you could purchase: %.3f" , totalStockGoogle));
 
 
 
