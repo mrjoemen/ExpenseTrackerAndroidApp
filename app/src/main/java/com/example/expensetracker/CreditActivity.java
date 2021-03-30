@@ -62,8 +62,8 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
 
         editCreditAmount.setText(Float.toString(currentTransaction.getAmount() / -1));
         editCreditType.setText(currentTransaction.getType());
-        editCreditDescription.setText(DateFormat.format("MM/dd/yyyy",currentTransaction.getDate().getTimeInMillis()).toString());
-        editCreditDate.setText(currentTransaction.getDescription());
+        editCreditDate.setText(DateFormat.format("MM/dd/yyyy",currentTransaction.getDate().getTimeInMillis()).toString());
+        editCreditDescription.setText(currentTransaction.getDescription());
     }
 
     //method for reading inputs from the screen
