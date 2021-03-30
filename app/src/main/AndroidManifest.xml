@@ -19,7 +19,9 @@
         <activity android:name=".DebitActivity" />
         <activity android:name=".CreditActivity" />
         <activity android:name=".InvestmentOptions" />
+        <activity android:name=".TransactionSettingsActivity" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

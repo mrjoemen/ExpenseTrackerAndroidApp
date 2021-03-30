@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
         android:layout_marginTop="16dp"
+        android:background="@color/white"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:text="Hello, User"
+        android:text="@string/hello_user"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:background="@color/white"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="$0"
@@ -99,7 +102,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            app:srcCompat="@drawable/line_graph" />
+            app:srcCompat="@drawable/line_graph"
+            android:contentDescription="TODO" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -108,6 +112,7 @@
         android:layout_height="303dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

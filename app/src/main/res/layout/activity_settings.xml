@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
+            android:contentDescription="@string/home_button"
             app:srcCompat="@drawable/home_icon" />
 
         <ImageButton
@@ -30,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
+            android:contentDescription="@string/invest"
             app:srcCompat="@drawable/line_graph" />
     </LinearLayout>
 
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="SETTINGS"
+        android:text="@string/settings"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
-        android:text="Sort Transactions By:"
+        android:text="@string/sort_transactions_by"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
@@ -76,13 +76,13 @@
             android:id="@+id/radioType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type" />
+            android:text="@string/type" />
 
         <RadioButton
             android:id="@+id/radioDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date" />
+            android:text="@string/date" />
     </RadioGroup>
 
     <TextView
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Sort By:"
+        android:text="@string/sort_by"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
@@ -98,6 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroupSortBy" />
 
     <RadioGroup
+        android:id="@+id/radioGroupSortOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -109,13 +110,13 @@
             android:id="@+id/radioAscending"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Low to High" />
+            android:text="@string/low_to_high" />
 
         <RadioButton
             android:id="@+id/radioDescending"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="High to Low" />
+            android:text="@string/high_to_low" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
