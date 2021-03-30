@@ -4,14 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity{
      *  - DONE: List and editing item
      *  - DONE: DB work
      *  - DONE: There is a bug that will crash the app if I press anything but a number for inflow or outflow
-     *  - In-progress: Sorting
+     *  - DONE: Sorting
      *  - In-progress: Investing API implementation
      *  - In-progress: Delete off of list
      *  - I would like to have each list item be green if it's inflow and red if it's an outflow, for now
@@ -52,20 +51,26 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String sortBy = getSharedPreferences("ExpenseTrackerPreferences",
+                Context.MODE_PRIVATE).getString("sortfield", "transactionAmount");
+        String sortOrder = getSharedPreferences("ExpenseTrackerPreferences",
+                Context.MODE_PRIVATE).getString("sortorder", "ASC");
+        TransactionDataSource ds = new TransactionDataSource(this);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TransactionDataSource ds = new TransactionDataSource(this);
+
         initInButton();
         initOutButton();
         initMenuItems();
         initCurrentBalance();
-        initDeleteSwitch();
         //initChangeTransactionDateButton();
+        initSettingsButton();
 
         try {
             ds.open();
-            transactions = ds.getTransactions();
+            transactions = ds.getTransactions(sortBy, sortOrder);
             ds.close();
             RecyclerView transactionList = findViewById(R.id.rvTransactions);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity{
 //        editToggle.setOnClickListener(view -> setForEditing(editToggle.isChecked()));
 //    }
 
-    //needed still
+    //is needed?
     private void setForEditing(boolean checked) {
     }
 
@@ -143,18 +148,13 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    private void initDeleteSwitch() {
-        Switch s = findViewById(R.id.deleteSwtich);
-
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Boolean status = buttonView.isChecked();
-                transactionAdapter.setDelete(status);
-                transactionAdapter.notifyDataSetChanged();
-            }
+    private void initSettingsButton() {
+        ImageButton ibSettings = findViewById(R.id.settingsButton);
+        ibSettings.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, TransactionSettingsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
     }
-
 
 }

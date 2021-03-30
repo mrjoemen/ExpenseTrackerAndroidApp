@@ -86,13 +86,13 @@ public class TransactionDataSource {
         return lastId;
     }
 
-    public ArrayList<Transaction> getTransactions(/*String sortField, String sortOrder*/){
+    public ArrayList<Transaction> getTransactions(String sortField, String sortOrder){
 
         ArrayList<Transaction> transactions = new ArrayList<>();
         Transaction newTransaction;
 
         try {
-            String query = "SELECT * FROM transactions;"; /*ORDER BY"/* + sortField + " " + sortOrder + ";";*/
+            String query = "SELECT * FROM transactions ORDER BY " + sortField + " " + sortOrder;
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
@@ -120,7 +120,7 @@ public class TransactionDataSource {
         database = dbHelper.getWritableDatabase();
         float balance = 0;
         try {
-            String query = "SELECT transactionAmount FROM transactions;"; /*ORDER BY"/* + sortField + " " + sortOrder + ";";*/
+            String query = "SELECT transactionAmount FROM transactions"; /*ORDER BY"/* + sortField + " " + sortOrder + ";";*/
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
