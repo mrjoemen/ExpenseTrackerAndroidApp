@@ -11,13 +11,23 @@
     <string name="_0">$0</string>
     <string name="subscription_income_food_or_travel">Subscription, Income, Food or Travel</string>
     <string name="amount">Amount</string>
-    <string name="type">Type</string>
+
     <string name="enter_type_here">Enter Type Here</string>
-    <string name="date">Date</string>
+
     <string name="description">Description</string>
     <string name="describe_your_transaction">Describe your transaction</string>
     <string name="change">Change</string>
     <string name="togglebutton">ToggleButton</string>
     <string name="save">save</string>
     <string name="enter_inflow">Enter Inflow</string>
+    <string name="settings">SETTINGS</string>
+    <string name="sort_transactions_by">Sort Transactions By:</string>
+    <string name="type">Type</string>
+    <string name="date">Date</string>
+    <string name="low_to_high">Low to High</string>
+    <string name="sort_by">Sort By:</string>
+    <string name="high_to_low">High to Low</string>
+    <string name="home_button">home button</string>
+    <string name="invest">invest</string>
+    <string name="hello_user">Hello, User</string>
 </resources>
