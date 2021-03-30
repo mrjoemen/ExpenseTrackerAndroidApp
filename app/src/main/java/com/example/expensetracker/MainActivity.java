@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity{
         initOutButton();
         initMenuItems();
         initCurrentBalance();
+        initDeleteSwitch();
         //initChangeTransactionDateButton();
 
         try {
@@ -137,6 +140,19 @@ public class MainActivity extends AppCompatActivity{
         investButton.setOnClickListener(view ->{
             Intent intent = new Intent(MainActivity.this, InvestmentOptions.class);
             startActivity(intent);
+        });
+    }
+
+    private void initDeleteSwitch() {
+        Switch s = findViewById(R.id.deleteSwtich);
+
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Boolean status = buttonView.isChecked();
+                transactionAdapter.setDelete(status);
+                transactionAdapter.notifyDataSetChanged();
+            }
         });
     }
 

@@ -6,19 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.ArrayList;
 
 public class TransactionAdapter extends RecyclerView.Adapter{
-
-    /*TODO:
-    *  I would like to have each list item be green if it's inflow and red if it's an outflow, For now
-    *  I will add this as an additional feature that we may implement, but for now I will skip it*/
 
     private ArrayList<Transaction> transactionData;
     private boolean isDeleting;
@@ -102,6 +101,7 @@ public class TransactionAdapter extends RecyclerView.Adapter{
             if (didDelete) {
                 transactionData.remove(position);
                 notifyDataSetChanged();
+
             }
             else {
                 Toast.makeText(parentContext, "Delete Failed :(", Toast.LENGTH_LONG).show();
