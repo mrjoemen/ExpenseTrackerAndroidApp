@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity{
             RecyclerView transactionList = findViewById(R.id.rvTransactions);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             transactionList.setLayoutManager(layoutManager);
-            transactionAdapter = new TransactionAdapter(transactions, this);
+            transactionAdapter = new TransactionAdapter(transactions, this, MainActivity.this);
             transactionAdapter.setmOnItemClickListener(onItemClickListener);
             transactionList.setAdapter(transactionAdapter);
         }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    private void initCurrentBalance(){
+    public void initCurrentBalance(){
         //ds instance for accessing instance method later
         TransactionDataSource dataSource = new TransactionDataSource(MainActivity.this);
         TextView balance = findViewById(R.id.dollarText);
