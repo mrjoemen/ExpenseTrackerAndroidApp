@@ -194,5 +194,12 @@ public class DebitActivity extends AppCompatActivity implements DatePickerDialog
             Intent intent = new Intent(DebitActivity.this, MainActivity.class);
             startActivity(intent);
         });
+
+        //investment Cancel icon links to Investment layout
+        Button cancelButton = findViewById(R.id.debitCancelButton);
+        cancelButton.setOnClickListener(view ->{
+            Intent intent = new Intent(DebitActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 }

@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toStartOf="@+id/investmentOptionText" />
 
     <Button
-        android:id="@+id/outButton"
+        android:id="@+id/creditCancelButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
         android:backgroundTint="#FDCFC1"
@@ -129,7 +129,7 @@
         android:layout_marginBottom="32dp"
         android:text="Delete"
         app:layout_constraintBottom_toTopOf="@+id/rvTransactions"
-        app:layout_constraintEnd_toStartOf="@+id/outButton"
+        app:layout_constraintEnd_toStartOf="@+id/creditCancelButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/inButton" />
 

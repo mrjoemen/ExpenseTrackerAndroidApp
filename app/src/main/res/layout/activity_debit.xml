@@ -26,7 +26,7 @@
         android:id="@+id/debitSaveButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="156dp"
         android:backgroundTint="#C6FDC1"
         android:fontFamily="@font/roboto_light"
         android:gravity="right|center_vertical"
@@ -35,12 +35,12 @@
         android:textColor="#000000"
         android:textSize="36sp"
         app:cornerRadius="29dip"
-        app:layout_constraintBottom_toTopOf="@+id/outButton"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/outButton"
+        android:id="@+id/debitCancelButton"
         android:layout_width="204dp"
         android:layout_height="96dp"
         android:layout_marginBottom="24dp"

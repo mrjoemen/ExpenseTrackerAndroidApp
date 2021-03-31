@@ -160,8 +160,10 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
             startActivity(intent);
         });
 
-    }
 
+
+
+    }
 
     //click listener and get datapicker dialog
     private void initChangeCreditDateButton(){
@@ -192,5 +194,12 @@ public class CreditActivity extends AppCompatActivity implements DatePickerDialo
             Intent intent = new Intent(CreditActivity.this, MainActivity.class);
             startActivity(intent);
         });
+        //investment Cancel icon links to Investment layout
+        Button cancelButton = findViewById(R.id.creditCancelButton);
+        cancelButton.setOnClickListener(view ->{
+            Intent intent = new Intent(CreditActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

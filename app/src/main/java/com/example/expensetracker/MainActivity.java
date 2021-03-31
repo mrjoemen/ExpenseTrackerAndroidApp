@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity{
         });
     }
     private void initOutButton(){
-        Button inButton = findViewById(R.id.outButton);
+        Button inButton = findViewById(R.id.creditCancelButton);
         inButton.setOnClickListener(view ->{
             Intent intent = new Intent(MainActivity.this, CreditActivity.class);
             startActivity(intent);
