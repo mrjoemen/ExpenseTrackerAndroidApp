@@ -1,6 +1,7 @@
 package com.example.expensetracker;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,9 +70,21 @@ public class TransactionAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+
+        //we'll use this boolean for assigning color of amount
+        Boolean debit = transactionData.get(position).getAmount() > 0;
+
         TransactionViewHolder tvh = (TransactionViewHolder) holder;
 
         tvh.getTransName().setText("$" + Float.toString(transactionData.get(position).getAmount()));
+
+        //assigning color based debit set above
+        if(debit){
+            //green
+            tvh.getTransName().setTextColor(Color.parseColor("#2E631B"));
+        }
+        else//red
+            tvh.getTransName().setTextColor(Color.parseColor("#FF0000"));
         tvh.getTransAmount().setText(transactionData.get(position).getType());
         tvh.getTransDate().setText((DateFormat.format("MM/dd/yyyy", transactionData.get(position).getDate())));
 
