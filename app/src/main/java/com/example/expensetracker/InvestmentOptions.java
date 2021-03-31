@@ -35,8 +35,8 @@ public class InvestmentOptions extends AppCompatActivity {
         GoogleTextView = findViewById(R.id.googleTextView);
         GoogleTextView.setText("Loading...");
 
-        totalSPYStocks = findViewById(R.id.totalSPYStocks);
-        totalGoogleStocks = findViewById(R.id.totalGoogleStocks);
+//        totalSPYStocks = findViewById(R.id.totalSPYStocks);
+//        totalGoogleStocks = findViewById(R.id.totalGoogleStocks);
 
         //calling for inner class passing URL for the stock
         new MyTask().execute(SPY_url, GOOGLE_url);
