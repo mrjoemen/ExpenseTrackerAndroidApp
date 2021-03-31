@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity{
         initCurrentBalance();
         //initChangeTransactionDateButton();
         initSettingsButton();
+        initDeleteSwitch();
 
         try {
             ds.open();
@@ -82,38 +84,6 @@ public class MainActivity extends AppCompatActivity{
         catch (Exception e) {
             Toast.makeText(this, "Error retrieving transactions", Toast.LENGTH_LONG).show();
         }
-    }
-
-
-//    @Override
-//    public void didFinishDatePickerDialog(Calendar selectedTime) {
-//        TextView transDate = findViewById(R.id.textTransactionDate);
-//        transDate.setText(DateFormat.format("MM/dd/yyyy", selectedTime));
-//        Log.i("Hello there", "hello");
-//
-//        //need current Transaction
-//        currentTransaction.setDate(selectedTime);
-//    }
-//
-//
-//    //click listener and get datapicker dialog
-//    private void initChangeTransactionDateButton(){
-//        Button changeDate = findViewById(R.id.btnChangeDate);
-//        changeDate.setOnClickListener(view -> {
-//            FragmentManager fm = getSupportFragmentManager();
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(); // We create the dialog here
-//            datePickerDialog.show(fm, "DatePick"); // DialogFragment.show() method shows the actual dialog. For this to happen, we need the fragment manager that is above
-//        });
-//    }
-//
-//    //init toggle button and set for editing when checked
-//    private void initToggleButton() {
-//        final ToggleButton editToggle = findViewById(R.id.toggleButtonEdit);
-//        editToggle.setOnClickListener(view -> setForEditing(editToggle.isChecked()));
-//    }
-
-    //is needed?
-    private void setForEditing(boolean checked) {
     }
 
     private void initInButton(){
@@ -154,6 +124,19 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(MainActivity.this, TransactionSettingsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        });
+    }
+
+    private void initDeleteSwitch() {
+        Switch s = findViewById(R.id.deleteSwtich);
+
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Boolean status = buttonView.isChecked();
+                transactionAdapter.setDelete(status);
+                transactionAdapter.notifyDataSetChanged();
+            }
         });
     }
 
