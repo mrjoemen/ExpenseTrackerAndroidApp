@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/helloText"
+        android:id="@+id/investmentOptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -36,7 +36,7 @@
         android:textSize="80sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloText" />
+        app:layout_constraintTop_toBottomOf="@+id/investmentOptionText" />
 
     <Button
         android:id="@+id/inButton"
@@ -50,7 +50,7 @@
         android:textSize="36sp"
         app:cornerRadius="29dip"
         app:layout_constraintBottom_toTopOf="@+id/rvTransactions"
-        app:layout_constraintEnd_toStartOf="@+id/helloText" />
+        app:layout_constraintEnd_toStartOf="@+id/investmentOptionText" />
 
     <Button
         android:id="@+id/outButton"
@@ -64,7 +64,7 @@
         android:textSize="36sp"
         app:cornerRadius="29dip"
         app:layout_constraintBottom_toTopOf="@+id/rvTransactions"
-        app:layout_constraintStart_toEndOf="@+id/helloText" />
+        app:layout_constraintStart_toEndOf="@+id/investmentOptionText" />
 
     <ImageButton
         android:id="@+id/settingsButton"

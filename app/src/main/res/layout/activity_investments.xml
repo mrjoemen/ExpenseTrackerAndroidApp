@@ -7,7 +7,61 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/helloText"
+        android:id="@+id/googleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="Google:"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/appleText"
+        app:layout_constraintTop_toBottomOf="@+id/totalStockAapl" />
+
+    <View
+        android:id="@+id/rectangle_"
+        android:layout_width="235dp"
+        android:layout_height="84dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rectangle_9"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_9"
+        app:layout_constraintTop_toBottomOf="@+id/totalStockAapl" />
+
+    <TextView
+        android:id="@+id/appleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="Apple:"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stockText" />
+
+    <TextView
+        android:id="@+id/stockText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="Stocks"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dollarText" />
+
+    <TextView
+        android:id="@+id/investmentOptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -32,67 +86,58 @@
         android:textSize="80sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloText" />
+        app:layout_constraintTop_toBottomOf="@+id/investmentOptionText" />
 
     <TextView
-        android:id="@+id/SPYPrice"
+        android:id="@+id/AAPLPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
         android:text="TextView"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloText" />
-
-    <TextView
-        android:id="@+id/totalSPYStocks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/purple_700"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SPYPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/appleText" />
 
     <TextView
         android:id="@+id/googleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
         android:text="TextView"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/AAPLPrice"
+        app:layout_constraintTop_toBottomOf="@+id/googleText" />
 
     <TextView
         android:id="@+id/totalGoogleStocks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
         android:text="TextView"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_" />
 
     <View
         android:id="@+id/rectangle_9"
-        android:layout_width="274dp"
-        android:layout_height="100dp"
+        android:layout_width="235dp"
+        android:layout_height="84dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rectangle_9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dollarText" />
+        app:layout_constraintTop_toBottomOf="@+id/stockText" />
 
     <ImageButton
         android:id="@+id/settingsButton"
@@ -104,7 +149,7 @@
         android:backgroundTint="#FFFFFF"
         android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/helloText"
+        app:layout_constraintStart_toEndOf="@+id/investmentOptionText"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/settings_icon" />
 
@@ -137,5 +182,18 @@
             app:srcCompat="@drawable/line_graph" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/totalStockAapl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rectangle_9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

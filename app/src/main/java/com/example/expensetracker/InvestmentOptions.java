@@ -3,7 +3,6 @@ package com.example.expensetracker;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -16,12 +15,13 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class InvestmentOptions extends AppCompatActivity {
-    TextView SPY_TextView;
+    TextView AAPL_TextView;
     TextView GoogleTextView;
-    TextView totalSPYStocks;
+    TextView totalStockApple;
     TextView totalGoogleStocks;
+    TextView TextV1;
 
-    final String SPY_url = NYSurlBuilder("spy");
+    final String APPL_url = NYSurlBuilder("aapl");
     final String GOOGLE_url = NYSurlBuilder("goog");
 
     @Override
@@ -30,16 +30,17 @@ public class InvestmentOptions extends AppCompatActivity {
         setContentView(R.layout.activity_investments);
         initMenuItems();
         initCurrentBalance();
-        SPY_TextView = findViewById(R.id.SPYPrice);
-        SPY_TextView.setText("Loading...");
+        AAPL_TextView = findViewById(R.id.AAPLPrice);
+        AAPL_TextView.setText("Loading...");
         GoogleTextView = findViewById(R.id.googleTextView);
         GoogleTextView.setText("Loading...");
 
-//        totalSPYStocks = findViewById(R.id.totalSPYStocks);
-//        totalGoogleStocks = findViewById(R.id.totalGoogleStocks);
+
+        totalStockApple = findViewById(R.id.totalStockAapl);
+        totalGoogleStocks = findViewById(R.id.totalGoogleStocks);
 
         //calling for inner class passing URL for the stock
-        new MyTask().execute(SPY_url, GOOGLE_url);
+        new MyTask().execute(APPL_url, GOOGLE_url);
 
 
     }
@@ -112,20 +113,19 @@ public class InvestmentOptions extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void price) {
             //set the above global TextViews to the pulled quotes, found in doInBackground
-            SPY_TextView.setText("SPY price today is $" + quotes.get(0));
-            GoogleTextView.setText("GOOG price today is $" + quotes.get(1));
+            AAPL_TextView.setText("$"+quotes.get(0));
+            GoogleTextView.setText("$" + quotes.get(1));
 
 
             TransactionDataSource dataSource = new TransactionDataSource(InvestmentOptions.this);
             Double balance = Double.valueOf(dataSource.getBalance());
 
-            double totalStockSpy = balance / Double.parseDouble(quotes.get(0).replace(",", ""));
-
-
+            double totalStockAppl = balance / Double.parseDouble(quotes.get(0).replace(",", ""));
             double totalStockGoogle = balance / Double.parseDouble(quotes.get(1).replace(",", ""));
 
-            totalSPYStocks.setText(String.format("Number of shares you could purchase: %.3f" , totalStockSpy));
-            totalGoogleStocks.setText(String.format("Number of shares you could purchase: %.3f" , totalStockGoogle));
+
+            totalStockApple.setText(String.format("Number of shares you could purchase: %.03f" , totalStockAppl));
+            totalGoogleStocks.setText(String.format("Number of shares you could purchase: %.03f" , totalStockGoogle));
 
 
 
