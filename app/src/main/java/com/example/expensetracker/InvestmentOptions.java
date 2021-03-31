@@ -30,6 +30,7 @@ public class InvestmentOptions extends AppCompatActivity {
         setContentView(R.layout.activity_investments);
         initMenuItems();
         initCurrentBalance();
+        initSettingsButton();
         AAPL_TextView = findViewById(R.id.AAPLPrice);
         AAPL_TextView.setText("Loading...");
         GoogleTextView = findViewById(R.id.googleTextView);
@@ -137,4 +138,12 @@ public class InvestmentOptions extends AppCompatActivity {
         return "https://www.marketwatch.com/investing/fund/" + stockSym + "/download-data?siteid=mktw&date=&x=0&y=0";
     }
 
+    private void initSettingsButton() {
+        ImageButton ibSettings = findViewById(R.id.settingsButton);
+        ibSettings.setOnClickListener(view -> {
+            Intent intent = new Intent(InvestmentOptions.this, TransactionSettingsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+    }
 }
