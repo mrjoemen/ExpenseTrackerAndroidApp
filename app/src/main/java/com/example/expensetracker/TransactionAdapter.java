@@ -23,6 +23,7 @@ public class TransactionAdapter extends RecyclerView.Adapter{
     private boolean isDeleting;
     private Context parentContext;
     private View.OnClickListener mOnItemClickListener;
+    MainActivity mainAct;
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder {
         public TextView transName;
@@ -46,13 +47,15 @@ public class TransactionAdapter extends RecyclerView.Adapter{
         public Button getDeleteButton() {return deleteButton;}
     }
 
-    public TransactionAdapter(ArrayList<Transaction> arrayList, Context context) {
+    public TransactionAdapter(ArrayList<Transaction> arrayList, Context context, MainActivity mainActivity) {
         transactionData = arrayList;
         parentContext = context;
+        mainAct = mainActivity;
     }
 
     public void setmOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
+
     }
 
     @NonNull
@@ -77,6 +80,8 @@ public class TransactionAdapter extends RecyclerView.Adapter{
             tvh.getDeleteButton().setOnClickListener(view -> {
                 deleteItem(position);
             });
+            mainAct.initCurrentBalance();
+
         }
         else {
             tvh.getDeleteButton().setVisibility(View.INVISIBLE);
@@ -110,5 +115,7 @@ public class TransactionAdapter extends RecyclerView.Adapter{
         catch (Exception e) {
             Toast.makeText(parentContext, "Delete Failed! :(", Toast.LENGTH_LONG).show();
         }
+
+
     }
 }
